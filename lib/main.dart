@@ -27,7 +27,7 @@ class ShinyHuntApp extends StatelessWidget {
 
 enum HuntMethod { wild, outbreak, masuda }
 
-extension on HuntMethod {
+extension HuntMethodX on HuntMethod {
   String get label => switch (this) {
         HuntMethod.wild => 'Encuentros salvajes',
         HuntMethod.outbreak => 'Brotes masivos',
@@ -64,7 +64,7 @@ class HuntSettings {
 
   factory HuntSettings.fromJson(Map<String, dynamic> json) {
     return HuntSettings(
-      method: HuntMethod.fromKey(json['method'] ?? 'wild'),
+      method: HuntMethodX.fromKey(json['method'] ?? 'wild'),
       shinyCharm: json['shinyCharm'] ?? false,
       sparklingPower: json['sparklingPower'] ?? false,
       outbreakKOs: (json['outbreakKOs'] ?? 0) as int,
@@ -818,4 +818,3 @@ String _dateFmt(DateTime d) {
   ];
   return '${d.day} ${months[d.month - 1]} ${d.year}';
 }
-
